@@ -27,7 +27,7 @@ const goDisplay = document.createElement("div");
     {
         /* if turn is circle cross next if not circle is next :) */
     }
-    infodisplay.textContent = "It is Now" + turn + "'s Turn";
+    infodisplay.textContent = "It is Now " + turn + " Turn";
     e.target.removeEventListener("click", addGo);
     checkScore();
 }
@@ -67,4 +67,21 @@ const allSquares = document.querySelectorAll(".square");
         }
     });
 
+    
+
 }
+
+function resetGame() {
+    const allSquares = document.querySelectorAll(".square");
+    allSquares.forEach(square => {
+        if (square.firstChild) {
+            square.removeChild(square.firstChild);
+        }
+        square.addEventListener("click", addGo);
+    });
+    turn = "circle";
+    infodisplay.textContent = "Circle Goes First";
+}
+
+const resetButton = document.querySelector("#reset-button");
+resetButton.addEventListener("click", resetGame);
